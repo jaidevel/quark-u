@@ -1,0 +1,23 @@
+{
+    "name": "quark-u",
+    "version": "0.1.0",
+    "description": "Smaller. Faster. Fundamental utilities for modern web development.",
+    "main": "js/quark-u-core.js",
+    "scripts": {
+        "build:scss": "sass scss/quark-u.scss quark-u.css --no-source-map",
+        "watch:scss": "sass --watch scss/quark-u.scss:quark-u.css --no-source-map"
+    },
+    "keywords": [
+        "scss",
+        "js",
+        "framework",
+        "utility",
+        "minimal",
+        "frontend"
+    ],
+    "author": "Your Name",
+    "license": "MIT",
+    "dependencies": {
+        "micromodal": "^0.4.10"
+    }
+}
