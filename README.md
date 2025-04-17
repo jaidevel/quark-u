@@ -1,4 +1,4 @@
-# quark-u
+# {quark-u}
 
 **Smaller. Faster. Fundamental utilities for modern web development.**
 
