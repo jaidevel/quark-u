@@ -1,0 +1,81 @@
+// File: scss/utilities/_helpers.scss
+// ==============================
+// Spacing Utilities Generator (numbered scale, responsive)
+// ==============================
+//
+// - Classes generated:
+//     u-m-2         -> margin: 8px on all screens
+//     u-mt-3-md     -> margin-top: 16px from 768px+
+//     u-pb-5-xl     -> padding-bottom: 64px from 1200px+
+//
+// - Supported directions:
+//     m  -> margin
+//     mt -> margin-top
+//     mb -> margin-bottom
+//     ml -> margin-left
+//     mr -> margin-right
+//     p  -> padding
+//     pt -> padding-top
+//     pb -> padding-bottom
+//     pl -> padding-left
+//     pr -> padding-right
+//
+// - Sizes mapped:
+//     0 -> 0px
+//     1 -> 4px
+//     2 -> 8px
+//     3 -> 16px
+//     4 -> 32px
+//     5 -> 64px
+//
+// - Breakpoints:
+//     sm (576px), md (768px), lg (992px), xl (1200px), xxl (1400px)
+//
+// This file generates all spacing classes automatically.
+// ==============================
+@use "../abstracts/index" as abstracts;
+
+// Local alias for prefix
+$prefix: abstracts.$prefix;
+// Responsive Breakpoints Map
+$breakpoints: abstracts.$breakpoints;
+
+
+// Spacing Directions Map
+$spacing-directions: (
+  "m" : margin,
+  "mt" : margin-top,
+  "mb" : margin-bottom,
+  "ml" : margin-left,
+  "mr" : margin-right,
+  "p" : padding,
+  "pt" : padding-top,
+  "pb" : padding-bottom,
+  "pl" : padding-left,
+  "pr" : padding-right
+);
+
+// Spacing Sizes Map (numbers)
+$spacing-sizes: abstracts.$spacing-sizes;
+
+// Generate base spacing classes (no breakpoint)
+@each $dir-abbr, $property in $spacing-directions {
+  @each $size, $space in $spacing-sizes {
+    .#{$prefix}#{$dir-abbr}-#{$size} {
+      #{$property}: #{$space};
+    }
+  }
+}
+
+// Generate responsive spacing classes (per breakpoint)
+@each $breakpoint, $min-width in $breakpoints {
+  @media (min-width: $min-width) {
+    @each $dir-abbr, $property in $spacing-directions {
+      @each $size, $space in $spacing-sizes {
+        .#{$prefix}#{$dir-abbr}-#{$size}-#{$breakpoint} {
+          #{$property}: #{$space};
+        }
+      }
+    }
+  }
+}

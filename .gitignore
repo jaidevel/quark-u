@@ -19,3 +19,8 @@ quark-u.css
 # VS Code workspace settings
 .vscode/
 *.code-workspace
+
+# Ignore package-lock.json
+package-lock.json
+# Ignore demo/
+demo/

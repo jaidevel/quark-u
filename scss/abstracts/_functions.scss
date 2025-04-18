@@ -1,0 +1,14 @@
+// File: scss/abstracts/_functions.scss
+// ==============================
+// Useful SCSS Functions for quark-u
+// ==============================
+
+// Pixel to rem conversion
+@function rem($px, $base: 16) {
+  @return ($px / $base) * 1rem;
+}
+
+// Color opacity helper
+@function opacity($color, $alpha) {
+  @return rgba($color, $alpha);
+}

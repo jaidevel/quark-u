@@ -1,0 +1,45 @@
+// File: scss/abstracts/_variables.scss
+// ==============================
+// quark-u Variables
+// ==============================
+
+// Prefix for utility classes
+$prefix: "u-";
+
+// Breakpoints map (mobile first)
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+  "xxl": 1400px
+);
+
+// Spacing Scale (numbered 0-5)
+$spacing-sizes: (
+  0: 0,
+  // 0px
+  1: 0.25rem,
+  // 4px
+  2: 0.5rem,
+  // 8px
+  3: 1rem,
+  // 16px
+  4: 2rem,
+  // 32px
+  5: 4rem // 64px
+);
+
+// Color Palette
+$color-bg: #0A0A0A; // Dark background
+$color-text: #F5F5F5; // Primary text color
+$color-accent-primary: #00FFD1; // Energy accent (Q tail, highlights)
+$color-bracket: #7A7A7A; // Subtle bracket {}
+$color-accent-secondary: #536DFE; // Secondary accent (hover, links)
+
+// Shadow Variables
+$shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+$shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+$shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.25);
