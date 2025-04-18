@@ -4,8 +4,11 @@
     "description": "Smaller. Faster. Fundamental utilities for modern web development.",
     "main": "js/quark-u-core.js",
     "scripts": {
-        "build:scss": "sass scss/quark-u.scss dist/quark-u.css --no-source-map",
-        "watch:scss": "sass --watch scss/quark-u.scss:dist/quark-u.css --no-source-map"
+        "watch:scss": "sass --watch scss/quark-u.scss:dist/quark-u.css --no-source-map",
+        "build:scss": "sass scss/quark-u.scss dist/quark-u.css --no-source-map && cp dist/quark-u.css demo/quark-u.css",
+        "build:js": "esbuild js/quark-u.js --bundle --outfile=dist/quark-u.js --format=iife --global-name=QuarkU --minify && esbuild js/quark-u.js --bundle --outfile=dist/quark-u.module.js --format=esm --minify && cp dist/quark-u.js demo/quark-u.js",
+        "build:all": "npm run build:scss && npm run build:js",
+        "serve:demo": "serve demo"
     },
     "keywords": [
         "scss",
@@ -21,6 +24,8 @@
         "micromodal": "^0.4.10"
     },
     "devDependencies": {
-        "sass": "^1.86.3"
+        "esbuild": "^0.20.2",
+        "sass": "^1.86.3",
+        "serve": "^14.2.4"
     }
 }
