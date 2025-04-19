@@ -1,0 +1,7 @@
+@use "../scss/quark-u" with ($modules: (modal: true,
+    offcanvas: true));
+
+// Now your own custom styles could follow
+body {
+  background: #da0c0c;
+}

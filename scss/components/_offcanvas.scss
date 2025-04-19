@@ -3,6 +3,7 @@
 // Offcanvas Drawer Styles for quark-u
 // ==============================
 
+@use "../quark-u/settings" as *;
 @use "../abstracts/index" as abstracts;
 
 // Local alias for prefix
@@ -12,51 +13,55 @@ $prefix: abstracts.$prefix;
 $offcanvas-width: 16rem;
 $offcanvas-transition: 0.3s ease;
 
-// Base offcanvas panel (hidden by default)
-.#{$prefix}offcanvas {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: $offcanvas-width;
-  background-color: #fff;
-  z-index: 1000;
-  transform: translateX(-100%);
-  transition: transform $offcanvas-transition;
-  overflow-y: auto;
+// Only output CSS if the module is enabled
+@if module-enabled("components/offcanvas") {
 
-  // Modifier: open state
-  &.is-open {
-    transform: translateX(0);
-  }
+  // Base offcanvas panel (hidden by default)
+  .#{$prefix}offcanvas {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: $offcanvas-width;
+    background-color: #fff;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform $offcanvas-transition;
+    overflow-y: auto;
 
-  // Modifier: right side
-  &--right {
-    right: 0;
-    left: auto;
-    transform: translateX(100%);
-
+    // Modifier: open state
     &.is-open {
       transform: translateX(0);
     }
+
+    // Modifier: right side
+    &--right {
+      right: 0;
+      left: auto;
+      transform: translateX(100%);
+
+      &.is-open {
+        transform: translateX(0);
+      }
+    }
+
+    // Modifier: left side (default)
+    &--left {
+      left: 0;
+    }
   }
 
-  // Modifier: left side (default)
-  &--left {
-    left: 0;
-  }
-}
+  // Optional backdrop (if you wish to include an overlay)
+  .#{$prefix}offcanvas-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $offcanvas-transition, visibility $offcanvas-transition;
 
-// Optional backdrop (if you wish to include an overlay)
-.#{$prefix}offcanvas-backdrop {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity $offcanvas-transition, visibility $offcanvas-transition;
-
-  &.is-open {
-    opacity: 1;
-    visibility: visible;
+    &.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }

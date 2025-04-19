@@ -1,7 +1,3 @@
-// File: scss/compnents/_index.scss
-// ==============================
-// Import all componets for quark-u
-// ==============================
-
-@use "modal";
-@use "offcanvas";
+// components/_index.scss
+@use 'modal';
+@use 'offcanvas';

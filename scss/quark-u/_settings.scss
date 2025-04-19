@@ -1,0 +1,15 @@
+// _settings.scss
+//
+// Configurable settings for Quark-U framework.
+@use "sass:map";
+
+$modules: (
+  "components/modal": true,
+  "components/offcanvas": true,
+  ) !default;
+
+// Function to check if a module is enabled
+@function module-enabled($name) {
+  @return if(map.has-key($modules, $name), map.get($modules, $name), true
+);
+}

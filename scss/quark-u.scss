@@ -1,4 +1,12 @@
-@use "abstracts/index" as abstracts;
-@use "base/index" as base;
-@use "utilities/index" as utils;
-@use "components/index" as components;
+// quark-u.scss
+//
+// Public entry point for the Quark-U SCSS framework.
+// Forwards the internal structure defined in quark-u/_index.scss.
+//
+// quark-u.scss
+//
+// Expose settings for configuration via @use ... with (...)
+// Then compile the framework by using the index.
+//
+@forward "quark-u/settings";
+@use "quark-u/index";

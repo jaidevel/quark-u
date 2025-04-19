@@ -1,0 +1,7 @@
+// _index.scss
+//
+// Main internal structure of Quark-U.
+// Statically @use components, utilities, etc.
+
+@use "../components";
+@use "../utilities";

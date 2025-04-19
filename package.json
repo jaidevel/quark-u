@@ -6,8 +6,12 @@
     "scripts": {
         "watch:scss": "sass --watch scss/quark-u.scss:dist/quark-u.css --no-source-map",
         "build:scss": "sass scss/quark-u.scss dist/quark-u.css --no-source-map && cp dist/quark-u.css demo/quark-u.css",
-        "build:js": "esbuild js/quark-u.js --bundle --outfile=dist/quark-u.js --format=iife --global-name=QuarkU --minify && esbuild js/quark-u.js --bundle --outfile=dist/quark-u.module.js --format=esm --minify && cp dist/quark-u.js demo/quark-u.js",
+        "build:js": "esbuild js/quark-u.js --bundle --outfile=dist/quark-u.js --format=iife --global-name=QuarkU --minify && esbuild js/quark-u.js --bundle --outfile=dist/quark-u.module.js --format=esm --minify && cp dist/quark-u.js demo/quark-u.js && cp dist/quark-u.js test-app/quark-u.js",
         "build:all": "npm run build:scss && npm run build:js",
+        "build:test:css": "sass test-app/app.scss test-app/app.css --no-source-map",
+        "build:test-js": "esbuild test-app/app.js --bundle --outfile=test-app/app-bundle.js --format=iife --minify",
+        "build:test": "npm run build:test:css && npm run build:test-js",
+        "serve:test": "serve test-app",
         "serve:demo": "serve demo"
     },
     "keywords": [
