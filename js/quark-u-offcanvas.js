@@ -1,46 +1,71 @@
+// quark-u-offcanvas.js
 export default function initOffcanvas() {
-  console.log('initOffcanvas');
-  const cssPrefix = 'q-';
-  const dataPrefix = 'q-offcanvas';
-  const panelSelector = `.${cssPrefix}offcanvas`;
-  const backdropClass = `${cssPrefix}offcanvas-backdrop`;
-  const isOpenClass = 'is-open';
+  const DATA = {
+    panel: 'q-offcanvas',
+    target: 'q-offcanvas-target',
+    close: 'q-offcanvas-close'
+  };
+  const OPEN_CLASS = 'is-open';
 
-  const openButtons = document.querySelectorAll(`[data-${dataPrefix}-target]`);
-  const closeButtons = document.querySelectorAll(`[data-${dataPrefix}-close]`);
-  const backdrops = document.querySelectorAll(`.${backdropClass}`);
-
-  console.log('offcanvas', openButtons, closeButtons, backdrops);
-  openButtons.forEach(btn => {
-    const target = btn.getAttribute(`data-${dataPrefix}-target`);
-    const panel = document.querySelector(target);
-    btn.addEventListener('click', () => {
-      panel?.classList.add(isOpenClass);
-      backdrops.forEach(b => b.classList.add(isOpenClass));
-    });
-  });
-
-  closeButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const panel = btn.closest(panelSelector);
-      panel?.classList.remove(isOpenClass);
-      backdrops.forEach(b => b.classList.remove(isOpenClass));
-    });
-  });
-
-  backdrops.forEach(b => {
-    b.addEventListener('click', () => {
-      document.querySelectorAll(`${panelSelector}.${isOpenClass}`)
-        .forEach(p => p.classList.remove(isOpenClass));
-      backdrops.forEach(bd => bd.classList.remove(isOpenClass));
-    });
-  });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      document.querySelectorAll(`${panelSelector}.${isOpenClass}`)
-        .forEach(p => p.classList.remove(isOpenClass));
-      backdrops.forEach(bd => bd.classList.remove(isOpenClass));
+  // Backdrop singleton
+  const backdrop = {
+    el: null,
+    create() {
+      if (this.el) return;
+      this.el = document.createElement('div');
+      this.el.className = 'q-offcanvas-backdrop';
+      document.body.appendChild(this.el);
+      this.el.addEventListener('click', closeActive);
+    },
+    show() {
+      this.create();
+      requestAnimationFrame(() =>
+        this.el.classList.add(OPEN_CLASS)
+      );
+      document.body.classList.add('q-offcanvas-open'); // for body‑lock if desired
+    },
+    hide() {
+      if (!this.el) return;
+      this.el.classList.remove(OPEN_CLASS);
+      document.body.classList.remove('q-offcanvas-open');
     }
+  };
+
+  // Track current open panel
+  let activePanel = null;
+  function closeActive() {
+    if (!activePanel) return;
+    activePanel.classList.remove(OPEN_CLASS);
+    backdrop.hide();
+    activePanel = null;
+  }
+
+  function openPanel(id) {
+    closeActive();
+    const panel = document.querySelector(`[data-${DATA.panel}="${id}"]`);
+    if (!panel) return;
+    panel.classList.add(OPEN_CLASS);
+    activePanel = panel;
+    backdrop.show();
+  }
+
+  // Bind open buttons
+  document.querySelectorAll(`[data-${DATA.target}]`)
+    .forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute(`data-${DATA.target}`);
+        openPanel(id);
+      });
+    });
+
+  // Bind close buttons inside panels
+  document.querySelectorAll(`[data-${DATA.close}]`)
+    .forEach(btn => {
+      btn.addEventListener('click', closeActive);
+    });
+
+  // ESC key closes active
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeActive();
   });
 }
