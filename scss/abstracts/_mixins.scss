@@ -3,37 +3,64 @@
 // Useful SCSS Mixins for quark-u
 // ==============================
 
-// Media query helper
-@mixin respond($breakpoint) {
-  @if $breakpoint ==sm {
-    @media (min-width: 576px) {
+// Media query helper - min-width (up)
+@mixin respond-up($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+
+  @if $value {
+    @media (min-width: #{$value}) {
       @content;
     }
   }
 
-  @else if $breakpoint ==md {
-    @media (min-width: 768px) {
-      @content;
-    }
-  }
-
-  @else if $breakpoint ==lg {
-    @media (min-width: 992px) {
-      @content;
-    }
-  }
-
-  @else if $breakpoint ==xl {
-    @media (min-width: 1200px) {
-      @content;
-    }
+  @else {
+    @warn "Breakpoint `#{$breakpoint}` not found in \$breakpoints map.";
   }
 }
 
-// Center absolute positioning
-@mixin absolute-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+// Media query helper - max-width (down)
+@mixin respond-down($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+
+  @if $value {
+    // Subtract a small amount to avoid overlap
+    $max-width: (
+      $value - 0.02px
+    );
+
+  @media (max-width: #{$max-width}) {
+    @content;
+  }
+}
+
+@else {
+  @warn "Breakpoint `#{$breakpoint}` not found in \$breakpoints map.";
+}
+}
+
+// Media query helper - between two breakpoints
+@mixin respond-between($min, $max) {
+  $min-value: map-get($breakpoints, $min);
+  $max-value: map-get($breakpoints, $max);
+
+  @if $min-value and $max-value {
+    $adjusted-max: (
+      $max-value - 0.02px
+    );
+
+  @media (min-width: #{$min-value}) and (max-width: #{$adjusted-max}) {
+    @content;
+  }
+}
+
+@else {
+  @warn "One or both breakpoints `#{$min}` and `#{$max}` not found in \$breakpoints map.";
+}
+}
+
+// Mixin to create a clamp() value based on viewport width
+@mixin fluid-property($property, $min-size, $max-size, $min-vw: 320px, $max-vw: 1200px) {
+  #{$property}: clamp(#{$min-size},
+    calc(#{$min-size} + (#{strip-unit($max-size) - strip-unit($min-size)}) * ((100vw - #{strip-unit($min-vw)}px) / (#{strip-unit($max-vw) - strip-unit($min-vw)}))),
+    #{$max-size});
 }
