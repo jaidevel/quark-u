@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>quark-u Demo</title>
+  <link rel="stylesheet" href="quark-u.css">
+  <style>
+    body {
+      background: #f9f9f9;
+      font-family: sans-serif;
+      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+    }
+
+    code {
+      display: block;
+    }
+
+    .page-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    nav.sidebar {
+      width: 220px;
+      background: #fff;
+      padding: 1.5rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .sidebar-nav {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+    }
+
+    .sidebar-nav li {
+      margin-bottom: 0.75rem;
+    }
+
+    .sidebar-nav a {
+      display: block;
+      padding: 0.5rem;
+      color: #333;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+
+    .sidebar-nav a:hover {
+      background: #f0f0f0;
+    }
+
+    .sidebar-nav a.active {
+      background: #ececec;
+      font-weight: bold;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    .intro {
+      margin-bottom: 2rem;
+    }
+
+    section {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+      scroll-margin-top: 1rem;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    pre,
+    code {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+
+    .demo-box {
+      background: #ececec;
+      border-radius: 4px;
+      padding: 1rem;
+    }
+
+    .q-text-muted {
+      color: #777;
+    }
+
+    .demo-flex {
+      height: 150px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-container">
+    <nav class="sidebar" aria-label="Sidebar Navigation">
+      <div class="sidebar-inner">
+        <div class="brand q-text-center">
+          <h1 class="q-mb-2">{quark-u}</h1>
+          <p class="q-text-sm q-text-muted">Utility Classes</p>
+        </div>
+        <ul class="sidebar-nav">
+          <li><a href="#spacing">Spacing</a></li>
+          <li><a href="#flex">Flex</a></li>
+          <li><a href="#shadow">Shadow</a></li>
+          <li><a href="#text">Text</a></li>
+          <li><a href="#offcanvas-docs">Offcanvas</a></li>
+          <li><a href="#mixins">Mixins</a></li>
+          <!-- Add more sections here as needed -->
+        </ul>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <header class="intro q-text-center">
+        <h1 class="q-mb-2">{quark-u} Utility Demo</h1>
+        <p class="q-text-sm q-text-muted">Explore utility classes, components, and examples powered by the Quark Utility
+          Framework.</p>
+      </header>
+
+      <section id="spacing">
+        <h2>Spacing Utilities</h2>
+        <pre><code>.q-m-{0-5}, .q-p-{0-5}, .q-mt-{0-5}, .q-mb-{0-5}, etc.</code></pre>
+        <div class="q-p-2 q-mb-2 demo-box">Padding 2, Margin Bottom 2</div>
+        <div class="q-p-3 q-mb-3 demo-box">Padding 3, Margin Bottom 3</div>
+        <div class="q-p-4 demo-box">Padding 4</div>
+      </section>
+
+      <section id="flex">
+        <h2>Flex Utilities</h2>
+        <pre><code>.q-d-flex, .q-justify-center, .q-align-center, etc.</code></pre>
+        <div class="q-d-flex q-justify-center q-align-center q-p-2 demo-box demo-flex">
+          <span>Flex Centered Content</span>
+        </div>
+      </section>
+
+      <section id="shadow">
+        <h2>Shadow Utilities</h2>
+        <pre><code>.q-shadow-xs, .q-shadow-sm, .q-shadow-md, .q-shadow-lg, .q-shadow-xl</code></pre>
+        <div class="q-shadow-md q-p-3 q-mb-3 demo-box">Medium Shadow</div>
+        <div class="q-shadow-lg q-p-3 demo-box">Large Shadow</div>
+      </section>
+
+      <section id="text">
+        <h2>Text Utilities</h2>
+        <pre><code>.q-text-left, .q-text-center, .q-text-right, .q-uppercase, etc.</code></pre>
+        <p class="q-text-left q-mb-2">Left aligned text</p>
+        <p class="q-text-center q-mb-2">Center aligned text</p>
+        <p class="q-text-right q-mb-2">Right aligned text</p>
+        <p class="q-uppercase">Uppercase text</p>
+      </section>
+
+      <section id="offcanvas-docs">
+        <h2>Offcanvas Component</h2>
+        <p class="q-mb-3">
+          The Offcanvas component provides sliding panels from the left or right of the viewport, controlled via simple
+          data attributes.
+        </p>
+
+        <h3 class="q-mb-2">How to Use Offcanvas</h3>
+        <p class="q-text-sm q-text-muted q-mb-3">
+          Follow these steps to set up an Offcanvas panel using Quark-U attributes:
+        </p>
+        <ul class="q-mb-3">
+          <li>
+            Add this attribute to a trigger button:
+            <pre><code>data-q-offcanvas-target="panel-id"</code></pre>
+          </li>
+          <li>
+            Add this attribute to the panel element:
+            <pre><code>data-q-offcanvas="panel-id"</code></pre>
+          </li>
+          <li>
+            Add this attribute to an element inside the panel to close it:
+            <pre><code>data-q-offcanvas-close</code></pre>
+          </li>
+        </ul>
+
+        <h3 class="q-mb-2">Example: Left Offcanvas (default)</h3>
+        <button class="q-p-2 q-shadow-sm" data-q-offcanvas-target="menu">Open Menu</button>
+
+        <div data-q-offcanvas="menu" class="q-offcanvas">
+          <button data-q-offcanvas-close class="q-p-1">Close</button>
+          <nav>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <h3 class="q-mb-2 q-mt-4">Example: Right Offcanvas</h3>
+        <button class="q-p-2 q-shadow-sm" data-q-offcanvas-target="info">Open Info</button>
+
+        <div data-q-offcanvas="info" class="q-offcanvas q-offcanvas--right">
+          <button data-q-offcanvas-close class="q-p-1">Close</button>
+          <div>
+            <p>This panel slides in from the right.</p>
+          </div>
+        </div>
+      </section>
+      <section id="mixins">
+        <h2>SCSS Mixins</h2>
+        <p class="q-mb-4">
+          These utility mixins are available in Quark-U to simplify responsive design and fluid properties.
+        </p>
+
+        <h3 class="q-mb-2">respond-up</h3>
+        <p class="q-mb-2">
+          Apply styles when the viewport width is greater than or equal to a specific breakpoint.
+        </p>
+        <pre><code>@include respond-up(sm) {<br>&nbsp;&nbsp;// Your styles here<br>}</code></pre>
+
+        <h3 class="q-mb-2">respond-down</h3>
+        <p class="q-mb-2">
+          Apply styles when the viewport width is less than a specific breakpoint (minus 0.02px to prevent overlap).
+        </p>
+        <pre><code>@include respond-down(md) {<br>&nbsp;&nbsp;// Your styles here<br>}</code></pre>
+
+        <h3 class="q-mb-2">respond-between</h3>
+        <p class="q-mb-2">
+          Apply styles between two breakpoints (inclusive range).
+        </p>
+        <pre><code><br>@include respond-between(sm, lg) {<br>&nbsp;&nbsp;// Your styles here<br>}</code></pre>
+
+        <h3 class="q-mb-2">fluid-property</h3>
+        <p class="q-mb-2">
+          Create a fluid property (like font-size or padding) that smoothly adjusts based on viewport width.
+        </p>
+        <pre><code>@include fluid-property(font-size, 1rem, 2rem);</code></pre>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          navLinks.forEach(l => {
+            l.classList.remove('active');
+            l.removeAttribute('aria-current');
+          });
+          this.classList.add('active');
+          this.setAttribute('aria-current', 'page');
+        });
+      });
+
+      window.addEventListener('scroll', function () {
+        let current = '';
+        const sections = document.querySelectorAll('main section');
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (window.scrollY >= sectionTop - 100) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          link.removeAttribute('aria-current');
+          if (link.getAttribute('href').substring(1) === current) {
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+          }
+        });
+      });
+    });
+  </script>
+
+  <script src="quark-u.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('quark-u loaded', window.QuarkU);
+      if (window.QuarkU && typeof window.QuarkU.default === 'function') {
+        window.QuarkU.default();
+      }
+    });
+  </script>
+</body>
+
+</html>
