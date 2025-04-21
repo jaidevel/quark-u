@@ -88,12 +88,12 @@ Available NPM scripts:
 | Script | Action |
 |:---|:---|
 | `npm run build:scss` | Build quark-u SCSS only |
-| `npm run build:js` | Build quark-u JS (IIFE + ESM) and copy for demo and test-app |
+| `npm run build:js` | Build quark-u JS (IIFE + ESM) and copy for docs and test-app |
 | `npm run build:all` | Build full quark-u (SCSS + JS) |
 | `npm run build:test:css` | Build test-app SCSS only |
 | `npm run build:test-js` | Build and bundle test-app JS only |
 | `npm run build:test` | Build full test-app (SCSS + JS) |
-| `npm run serve:demo` | Serve `/demo/` folder locally |
+| `npm run serve:docs` | Serve `/docs/` folder locally |
 | `npm run serve:test` | Serve `/test-app/` folder locally |
 
 ✅ Smooth local development.  
