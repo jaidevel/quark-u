@@ -79,3 +79,60 @@ $spacing-sizes: abstracts.$spacing-sizes;
     }
   }
 }
+
+// ==============================
+// Display Utilities
+// ==============================
+$display-values: (
+  none,
+  block,
+  inline,
+  inline-block,
+  flex,
+  grid,
+  inline-flex,
+  inline-grid
+);
+
+// Base display classes
+@each $d in $display-values {
+  .#{$prefix}d-#{$d} {
+    display: $d !important;
+  }
+}
+
+// Responsive display classes
+@each $breakpoint, $min-width in $breakpoints {
+  @media (min-width: #{$min-width}) {
+    @each $d in $display-values {
+      .#{$prefix}d-#{$d}-#{$breakpoint} {
+        display: $d !important;
+      }
+    }
+  }
+}
+
+// ==============================
+// Visibility Utilities
+// ==============================
+// Base visibility classes
+.#{$prefix}visible {
+  visibility: visible !important;
+}
+
+.#{$prefix}invisible {
+  visibility: hidden !important;
+}
+
+// Responsive visibility classes
+@each $breakpoint, $min-width in $breakpoints {
+  @media (min-width: #{$min-width}) {
+    .#{$prefix}visible-#{$breakpoint} {
+      visibility: visible !important;
+    }
+
+    .#{$prefix}invisible-#{$breakpoint} {
+      visibility: hidden !important;
+    }
+  }
+}

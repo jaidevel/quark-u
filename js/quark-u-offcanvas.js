@@ -33,19 +33,29 @@ export default function initOffcanvas() {
 
   // Track current open panel
   let activePanel = null;
+  let activeButton = null;
   function closeActive() {
-    if (!activePanel) return;
-    activePanel.classList.remove(OPEN_CLASS);
-    backdrop.hide();
-    activePanel = null;
+    if (activePanel) {
+      activePanel.classList.remove(OPEN_CLASS);
+      backdrop.hide();
+      activePanel = null;
+    }
+    if (activeButton) {
+      activeButton.classList.remove(OPEN_CLASS);
+      activeButton = null;
+    }
   }
 
-  function openPanel(id) {
+  function openPanel(id, btn) {
     closeActive();
     const panel = document.querySelector(`[data-${DATA.panel}="${id}"]`);
     if (!panel) return;
     panel.classList.add(OPEN_CLASS);
     activePanel = panel;
+    if (btn) {
+      btn.classList.add(OPEN_CLASS);
+      activeButton = btn;
+    }
     backdrop.show();
   }
 
@@ -54,7 +64,7 @@ export default function initOffcanvas() {
     .forEach(btn => {
       btn.addEventListener('click', () => {
         const id = btn.getAttribute(`data-${DATA.target}`);
-        openPanel(id);
+        openPanel(id, btn);
       });
     });
 

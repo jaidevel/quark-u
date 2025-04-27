@@ -130,6 +130,7 @@
           <li><a href="#shadow">Shadow</a></li>
           <li><a href="#text">Text</a></li>
           <li><a href="#offcanvas-docs">Offcanvas</a></li>
+          <li><a href="#menu-icons">Menu Icons</a></li>
           <li><a href="#mixins">Mixins</a></li>
           <!-- Add more sections here as needed -->
         </ul>
@@ -225,6 +226,58 @@
           </div>
         </div>
       </section>
+
+
+      <section id="menu-icons">
+        <h2>Menu Icons</h2>
+        <p class="q-mb-4">
+          Quark-U includes a flexible, SCSS-driven hamburger menu icon built with pure HTML and utility classes.
+          It supports open/close animation states using BEM modifiers.
+        </p>
+
+        <h3 class="q-mb-2">Basic Usage</h3>
+        <p class="q-mb-2">
+          Use the base class <code>.q-menu-icon</code> with three child elements using <code>.q-menu-icon__bar</code>.
+        </p>
+
+        <pre>
+  <code class="language-html">
+&lt;button onclick=&quot;this.querySelector('.q-icon-menu').classList.toggle('q-icon-menu--is-open')&quot;
+  class=&quot;q-navbar__toggle q-d-flex&quot; aria-controls=&quot;menu-test&quot;&gt;
+  &lt;span class=&quot;q-icon-menu&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+  &lt;span style=&quot;display: none;&quot; class=&quot;screen-reader-text&quot;&gt;Toggle menu&lt;/span&gt;
+&lt;/button&gt;
+  </code>
+</pre>
+
+        <h3 class="q-mb-2">Live Example</h3>
+        <button onclick="this.querySelector('.q-icon-menu').classList.toggle('q-icon-menu--is-open')"
+          class="q-navbar__toggle q-d-flex" aria-controls="menu-test">
+          <span class="q-icon-menu" aria-hidden="true"></span>
+          <span style="display: none;" class="screen-reader-text">Toggle menu</span>
+        </button>
+
+
+        <h3 class="q-mb-2">Custom States</h3>
+        <p class="q-mb-2">
+          Add <code>.q-menu-icon--is-open</code> to trigger the "X" animation. You can toggle this with JS or a class
+          toggle
+          utility.
+        </p>
+
+        <pre>
+            document.querySelector('.q-menu-icon')
+              .classList.toggle('q-menu-icon--is-open');
+              </pre>
+
+        <h3 class="q-mb-2">Variants</h3>
+        <p>
+          Future variants can use modifier classes like <code>.q-menu-icon--alt</code> or <code>--bold</code> for
+          alternate
+          styles.
+        </p>
+      </section>
+
       <section id="mixins">
         <h2>SCSS Mixins</h2>
         <p class="q-mb-4">
