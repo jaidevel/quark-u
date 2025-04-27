@@ -101,11 +101,11 @@ $display-values: (
   }
 }
 
-// Responsive display classes
+// Responsive display classes (new convention: .q-d-{breakpoint}-{value})
 @each $breakpoint, $min-width in $breakpoints {
   @media (min-width: #{$min-width}) {
     @each $d in $display-values {
-      .#{$prefix}d-#{$d}-#{$breakpoint} {
+      .#{$prefix}d-#{$breakpoint}-#{$d} {
         display: $d !important;
       }
     }
@@ -124,7 +124,7 @@ $display-values: (
   visibility: hidden !important;
 }
 
-// Responsive visibility classes
+// Responsive visibility classes (new convention: .q-visible-{breakpoint}, .q-invisible-{breakpoint})
 @each $breakpoint, $min-width in $breakpoints {
   @media (min-width: #{$min-width}) {
     .#{$prefix}visible-#{$breakpoint} {
