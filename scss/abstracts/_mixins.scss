@@ -58,9 +58,23 @@
 }
 }
 
-// Mixin to create a clamp() value based on viewport width
-@mixin fluid-property($property, $min-size, $max-size, $min-vw: 320px, $max-vw: 1200px) {
+// _mixins.scss
+
+// Generic fluid property (universal)
+@mixin fluid-size($property, $min-size, $max-size, $min-vw: 360px, $max-vw: 1200px) {
   #{$property}: clamp(#{$min-size},
     calc(#{$min-size} + (#{strip-unit($max-size) - strip-unit($min-size)}) * ((100vw - #{strip-unit($min-vw)}px) / (#{strip-unit($max-vw) - strip-unit($min-vw)}))),
     #{$max-size});
+}
+
+// Fluid font-size (clean clamp)
+@mixin fluid-font($min-size, $max-size, $min-vw: 360, $max-vw: 1200) {
+  $slope: (
+    $max-size - $min-size) / ($max-vw - $min-vw) * 100;
+  $base: $min-size - ($slope * $min-vw / 100
+  );
+
+font-size: clamp(#{$min-size}rem,
+  #{$base}rem + #{$slope}vw,
+  #{$max-size}rem);
 }

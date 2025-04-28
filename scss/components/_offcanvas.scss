@@ -7,7 +7,7 @@
 @use "../abstracts/index" as abstracts;
 
 $prefix: abstracts.$prefix;
-$offcanvas-width: 16rem;
+$offcanvas-width: minmax(400px, 100vw);
 $offcanvas-transition: 0.3s ease;
 
 @if module-enabled("components/offcanvas") {

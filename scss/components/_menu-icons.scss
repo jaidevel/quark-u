@@ -13,6 +13,38 @@
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833%2C37%2C41%2C0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6L24 24M6 24L24 6'/%3e%3c/svg%3e");
 }
 
+// Close Button
+.q-button-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  color: inherit;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover,
+  &:focus {
+    background: rgba(0, 0, 0, 0.08);
+    outline: none;
+  }
+
+  // Optional: icon inside
+  &::before {
+    content: '\00d7'; // Multiplication sign (×)
+    font-size: 1.5rem;
+    line-height: 1;
+    display: block;
+  }
+}
+
 // .q-menu-icon {
 //   display: inline-flex;
 //   flex-direction: column;
