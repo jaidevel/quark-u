@@ -131,6 +131,7 @@
           <li><a href="#text">Text</a></li>
           <li><a href="#offcanvas-docs">Offcanvas</a></li>
           <li><a href="#menu-icons">Menu Icons</a></li>
+          <li><a href="#fluid-spacing">Fluid Sizing and Spacing</a></li>
           <li><a href="#mixins">Mixins</a></li>
           <!-- Add more sections here as needed -->
         </ul>
@@ -276,6 +277,51 @@
           alternate
           styles.
         </p>
+      </section>
+
+      <section id="fluid-spacing">
+        <h2>Fluid Typography and Properties</h2>
+        <p class="q-mb-3">
+          Quark-U provides two mixins for creating fluid responsive values without media queries, using the CSS
+          <code>clamp()</code> function.
+          These are ideal for modern, scalable designs.
+        </p>
+
+        <h3 class="q-mb-2">1. <code>fluid-font()</code> — Fluid Font Sizes</h3>
+        <p class="q-text-sm q-text-muted q-mb-3">
+          This mixin generates a fluid <code>font-size</code> that grows smoothly between defined minimum and maximum
+          viewport
+          widths.
+        </p>
+
+        <pre><code>@include fluid-font(1, 1.5); // 1rem to 1.5rem between 360px and 1200px
+            @include fluid-font(1.25, 2, 375, 1440); // Custom viewport range</code></pre>
+
+        <h4 class="q-mb-2 q-mt-4">Example:</h4>
+        <p class="q-text-sm q-text-muted q-mb-3">
+          This heading scales fluidly with the viewport width:
+        </p>
+        <h2 style="font-size: clamp(1.5rem, 1rem + 2vw, 3rem);" class="q-mb-4">
+          Fluid Heading
+        </h2>
+
+        <h3 class="q-mb-2">2. <code>fluid-size()</code> — Fluid Other Properties</h3>
+        <p class="q-text-sm q-text-muted q-mb-3">
+          This mixin can make any property fluid, like <code>padding</code>, <code>margin</code>, <code>width</code>, or
+          <code>height</code>.
+        </p>
+
+        <pre><code>@include fluid-size(padding, 0.5rem, 1.5rem);
+            @include fluid-size(width, 300px, 800px);</code></pre>
+
+        <h4 class="q-mb-2 q-mt-4">Example:</h4>
+        <p class="q-text-sm q-text-muted q-mb-3">
+          This button's padding grows with the viewport width:
+        </p>
+        <button style="padding: clamp(0.5rem, 0.25rem + 1vw, 1.5rem);" class="q-shadow-sm q-border">
+          Fluid Button
+        </button>
+
       </section>
 
       <section id="mixins">
